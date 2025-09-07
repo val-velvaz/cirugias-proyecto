@@ -29,6 +29,11 @@ private:
     std::vector<std::string> tipoTypes;
     int tipoActual;
 
+    sf::RectangleShape selectorIzquierda;
+    sf::Text textoIzquierda;
+    sf::RectangleShape selectorDerecha;
+    sf::Text textoDerecha;
+
     //boton de inicio
     sf::RectangleShape startBoton;
     sf::Text textStartBoton;

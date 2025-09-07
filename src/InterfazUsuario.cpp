@@ -4,7 +4,7 @@ InterfazUsuario::InterfazUsuario() {
     pacienteActivo = false;
     cirujanoActivo = false;
     tipoActual = 0;
-    tipoTypes = {"Apendicectomia", "Transplante de riñon", "Cirugia laser"};
+    tipoTypes = {"Apendicectomia", "Transplante de rinion", "Cirugia laser"};
     pressBoton = false;
 }
 
@@ -64,9 +64,29 @@ void InterfazUsuario::config(const sf::Font& juegoFont) {
     tipoSelector.setString(tipoTypes[tipoActual]);
     tipoSelector.setCharacterSize(24);
     tipoSelector.setFillColor(sf::Color::White);
-    tipoSelector.setPosition(100, 340);
+    tipoSelector.setPosition(250, 340);
 
     //BOTONCITOS
+    selectorIzquierda.setSize(sf::Vector2f(30, 30));
+    selectorIzquierda.setFillColor(sf::Color::White);
+    selectorIzquierda.setPosition(210, 340);
+
+    selectorDerecha.setSize(sf::Vector2f(30, 30));
+    selectorDerecha.setFillColor(sf::Color::White);
+    selectorDerecha.setPosition(580, 340);
+
+    textoIzquierda.setFont(font);
+    textoIzquierda.setCharacterSize(24);
+    textoIzquierda.setString("<");
+    textoIzquierda.setFillColor(sf::Color::Black);
+    textoIzquierda.setPosition(215, 340);
+
+    textoDerecha.setFont(font);
+    textoDerecha.setString(">");
+    textoDerecha.setCharacterSize(24);
+    textoDerecha.setFillColor(sf::Color::Black);
+    textoDerecha.setPosition(585, 340);
+
     startBoton.setSize(sf::Vector2f(200, 50));
     startBoton.setFillColor(sf::Color::Green);
     startBoton.setPosition(300, 450);
@@ -89,6 +109,11 @@ void InterfazUsuario::draw(sf::RenderWindow& window) {
 
     window.draw(tipoLabel);
     window.draw(tipoSelector);
+    window.draw(selectorDerecha);
+    window.draw(selectorIzquierda);
+    window.draw(textoDerecha);
+    window.draw(textoIzquierda);
+
     window.draw(startBoton);
     window.draw(textStartBoton);
 }
@@ -100,6 +125,19 @@ void InterfazUsuario::manejarEntrada(const sf::Event& event) {
         sf::Vector2f mousePos = {static_cast<float>(event.mouseButton.x), static_cast<float>(event.mouseButton.y)};
         pacienteActivo = pacienteBox.getGlobalBounds().contains(mousePos); //pacientito
         cirujanoActivo = cirujanoBox.getGlobalBounds().contains(mousePos); //cirujanito
+
+        if (selectorIzquierda.getGlobalBounds().contains(mousePos)) {
+            if (tipoActual > 0) {
+                tipoActual--;
+            }
+            tipoSelector.setString(tipoTypes[tipoActual]);
+        }
+        if (selectorDerecha.getGlobalBounds().contains(mousePos)) {
+            if (tipoActual < tipoTypes.size() - 1) {
+                tipoActual++;
+            } 
+            tipoSelector.setString(tipoTypes[tipoActual]);
+        }
 
         if (startBoton.getGlobalBounds().contains(mousePos)) {
             pressBoton = true;
@@ -140,15 +178,28 @@ void InterfazUsuario::resetBoton() {
     this->pressBoton = false;
 }
 
+// En el archivo: cirugias/src/InterfazUsuario.cpp
+
 Cirugia InterfazUsuario::getDatosCirugia() const {
-    if (tipoActual >= 0 && tipoActual < tipoTypes.size()) {
-        std::string tipoCirugiaSeleccionada = tipoTypes[tipoActual];
-        // se pueden agregar mas cirugias jijijaja
-        if (tipoCirugiaSeleccionada == "Extraccion de Muela") {
-            return Cirugia(pacienteShowText.getString(), tipoCirugiaSeleccionada, Instrumento::ALICATE);
-        } else if (tipoCirugiaSeleccionada == "Apendicectomia") {
-            return Cirugia(pacienteShowText.getString(), tipoCirugiaSeleccionada, Instrumento::BISTURI);
-        }
+    std::string diagnosticoCirugia = "Diagnóstico no especificado";
+    Instrumento instrumentoRequerido = Instrumento::NINGUNO;
+    std::string tipoCirugiaSeleccionada = tipoTypes[tipoActual];
+
+    if (tipoCirugiaSeleccionada == "Apendicectomia") {
+        diagnosticoCirugia = "Apendicitis"; 
+        instrumentoRequerido = Instrumento::BISTURI;
+    } else if (tipoCirugiaSeleccionada == "Transplante de rinion") {
+        diagnosticoCirugia = "Insuficiencia renal";
+        instrumentoRequerido = Instrumento::PINZAS; 
+    } else if (tipoCirugiaSeleccionada == "Cirugia laser") {
+        diagnosticoCirugia = "Error de refracción ocular";
+        instrumentoRequerido = Instrumento::NINGUNO;
     }
-    return Cirugia(pacienteShowText.getString(), "Cirugía genérica", Instrumento::NINGUNO);
+
+    Cirugia cirugia(pacienteText, diagnosticoCirugia, instrumentoRequerido);
+
+    cirugia.setNombreCirujano(cirujanoText);
+    cirugia.setTipoCirugia(tipoCirugiaSeleccionada);
+
+    return cirugia;
 }

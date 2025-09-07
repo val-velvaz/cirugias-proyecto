@@ -1,15 +1,15 @@
 #include "Cirugia.hpp"
 
 void Cirugia::setNombrePaciente(const std::string& nombre) {
-    this->nombrePaciente = nombre;
+    nombrePaciente = nombre;
 }
 
 void Cirugia::setNombreCirujano(const std::string& nombre) {
-    this->nombreCirujano = nombre;
+    nombreCirujano = nombre;
 }
 
 void Cirugia::setTipoCirugia(const std::string& tipo) {
-    this->tipoCirugia = tipo;
+    tipoCirugia = tipo;
 }
 
 std::string Cirugia::getNombrePaciente() const {

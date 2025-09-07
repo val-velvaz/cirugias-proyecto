@@ -87,34 +87,35 @@ void Juego::run() {
                     // creo q seria mejor hacer una funcion en vez de todos estos ifs
                     if (bisturiSprite.getGlobalBounds().contains(mousePos)) {
                         isBisturiDragged = true;
+                        std::cout << "Bisturi tomado" << std::endl;
+
                     }
                     else if (tijerasSprite.getGlobalBounds().contains(mousePos)) {
                         isTijerasDragged = true;
+                        std::cout << "Tijeras tomadas" << std::endl;
                     }
                     else if (alicateSprite.getGlobalBounds().contains(mousePos)) {
                         isAlicateDragged = true;
+                        std::cout << "Alicate tomado" << std::endl;
                     }
                     else if (pinzasSprite.getGlobalBounds().contains(mousePos)) {
                         isPinzaDragged = true;
+                        std::cout << "Pinza tomada" << std::endl;
                     }
                 }
             }
             if (event.type == sf::Event::MouseMoved) {
                 if (isBisturiDragged) {
                     bisturiSprite.setPosition(sf::Vector2f(event.mouseMove.x, event.mouseMove.y));
-                    std::cout << "Bisturi tomado" << std::endl;
                 }
                 else if (isTijerasDragged) {
                     tijerasSprite.setPosition(sf::Vector2f(event.mouseMove.x, event.mouseMove.y));
-                    std::cout << "Tijeras tomadas" << std::endl;
                 }
                 else if (isAlicateDragged) {
                     alicateSprite.setPosition(sf::Vector2f(event.mouseMove.x, event.mouseMove.y));
-                    std::cout << "Alicate tomado" << std::endl;
                 }
                 else if (isPinzaDragged) {
                     pinzasSprite.setPosition(sf::Vector2f(event.mouseMove.x, event.mouseMove.y));
-                    std::cout << "Pinza tomada" << std::endl;
                 }
             }
             if (event.type == sf::Event::MouseButtonReleased) {
@@ -141,7 +142,7 @@ void Juego::run() {
         }
         window.clear(sf::Color::Black); 
         if(estadoActual == JuegoState::EXPEDIENTE) {
-        interfaz.draw(window);
+            interfaz.draw(window);
         } else if (estadoActual == JuegoState::CIRUGIA) {
             window.draw(textDiagnostico);
             window.draw(textInstrumento);
