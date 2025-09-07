@@ -51,13 +51,13 @@ void Juego::run() {
                     if (bisturiSprite.getGlobalBounds().contains(mousePos)) {
                         isBisturiDragged = true;
                     }
-                    if (tijerasSprite.getGlobalBounds().contains(mousePos)) {
+                    else if (tijerasSprite.getGlobalBounds().contains(mousePos)) {
                         isTijerasDragged = true;
                     }
-                    if (alicateSprite.getGlobalBounds().contains(mousePos)) {
+                    else if (alicateSprite.getGlobalBounds().contains(mousePos)) {
                         isAlicateDragged = true;
                     }
-                    if (pinzasSprite.getGlobalBounds().contains(mousePos)) {
+                    else if (pinzasSprite.getGlobalBounds().contains(mousePos)) {
                         isPinzaDragged = true;
                     }
                 }
@@ -66,13 +66,13 @@ void Juego::run() {
                 if (isBisturiDragged) {
                     bisturiSprite.setPosition(sf::Vector2f(event.mouseMove.x, event.mouseMove.y));
                 }
-                if (isTijerasDragged) {
+                else if (isTijerasDragged) {
                     tijerasSprite.setPosition(sf::Vector2f(event.mouseMove.x, event.mouseMove.y));
                 }
-                if (isAlicateDragged) {
+                else if (isAlicateDragged) {
                     alicateSprite.setPosition(sf::Vector2f(event.mouseMove.x, event.mouseMove.y));
                 }
-                if (isPinzaDragged) {
+                else if (isPinzaDragged) {
                     pinzasSprite.setPosition(sf::Vector2f(event.mouseMove.x, event.mouseMove.y));
                 }
             }
