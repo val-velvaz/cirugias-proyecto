@@ -91,3 +91,14 @@ void InterfazUsuario::draw(sf::RenderWindow& window) {
     window.draw(startBoton);
     window.draw(textStartBoton);
 }
+
+// maybe luego le cambio el nombre porque "manejarEntrada" suena raro
+void InterfazUsuario::manejarEntrada(const sf::Event& event) {
+    // los clics
+    if (event.type == sf::Event::MouseButtonPressed) {
+        sf::Vector2f mousePos = {static_cast<float>(event.mouseButton.x), static_cast<float>(event.mouseButton.y)};
+        pacienteActivo = pacienteBox.getGlobalBounds().contains(mousePos); //pacientito
+        cirujanoActivo = cirujanoBox.getGlobalBounds().contains(mousePos); //cirujanito
+    }
+    //entrada de text
+}
