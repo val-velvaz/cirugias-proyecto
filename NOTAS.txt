@@ -16,3 +16,5 @@ InterfazUsuario: dibujar campos de texto, un selector y un botón.
 enum: es como una lista de nombres con valores asignados
     - la voy a usar para que las fases del juego tengan nombres como
         EXPEDIENTE en lugar de números como 0.
+
+problema en el bisturi y la pinza

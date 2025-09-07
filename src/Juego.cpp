@@ -15,13 +15,13 @@ Juego::Juego() {
         } 
     
     bisturiSprite.setTexture(bisturiTexture);
-    bisturiSprite.setPosition(150, 400);
+    bisturiSprite.setPosition(100, 400);
     alicateSprite.setTexture(alicateTexture);
     alicateSprite.setPosition(250, 400);
     pinzasSprite.setTexture(pinzasTexture);
-    pinzasSprite.setPosition(350, 400);
+    pinzasSprite.setPosition(400, 400);
     tijerasSprite.setTexture(tijerasTexture);
-    tijerasSprite.setPosition(450, 400);
+    tijerasSprite.setPosition(550, 400);
 
     interfaz.config(juegoFont);
     estadoActual = JuegoState::EXPEDIENTE;
