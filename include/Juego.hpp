@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <InterfazUsuario.hpp>
+#include <iostream>
 
 enum class JuegoState {
     EXPEDIENTE, //ingreso
@@ -18,6 +19,8 @@ private:
     Cirugia cirugiaActual;
     JuegoState estadoActual; //guardar el estado en el momento q tiene el juego
 
+    sf::RectangleShape areaEsteril;
+
     sf::Texture bisturiTexture;
     sf::Texture pinzasTexture;
     sf::Texture alicateTexture;
@@ -32,7 +35,7 @@ private:
     bool isPinzaDragged;
     bool isTijerasDragged;
     bool isAlicateDragged;
-    
+
 public:
     Juego();
     void run();

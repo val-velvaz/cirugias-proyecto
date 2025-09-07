@@ -14,6 +14,10 @@ Juego::Juego() {
             window.close();
         } 
     
+    areaEsteril.setSize(sf::Vector2f(200, 200));
+    areaEsteril.setFillColor(sf::Color(0, 255, 0, 100));
+    areaEsteril.setPosition(300, 200);
+
     bisturiSprite.setTexture(bisturiTexture);
     bisturiSprite.setPosition(100, 400);
     alicateSprite.setTexture(alicateTexture);
@@ -82,6 +86,19 @@ void Juego::run() {
                     isTijerasDragged = false;
                     isAlicateDragged = false;
                     isPinzaDragged = false;
+
+                    if(bisturiSprite.getGlobalBounds().intersects(areaEsteril.getGlobalBounds())) {
+                        std::cout << "Bisturi soltado" << std::endl;
+                    }
+                    if (tijerasSprite.getGlobalBounds().intersects(areaEsteril.getGlobalBounds())) {
+                        std::cout << "tijeras soltadas" << std::endl;
+                    }
+                    if(alicateSprite.getGlobalBounds().intersects(areaEsteril.getGlobalBounds())) {
+                        std::cout << "alicate soltado" << std::endl;
+                    }
+                    if(pinzasSprite.getGlobalBounds().intersects(areaEsteril.getGlobalBounds())) {
+                        std::cout << "pinza soltadoa" << std::endl;
+                    }
                 }
             }
         }
@@ -89,6 +106,7 @@ void Juego::run() {
         if(estadoActual == JuegoState::EXPEDIENTE) {
         interfaz.draw(window);
         } else if (estadoActual == JuegoState::CIRUGIA) {
+            window.draw(areaEsteril);
             window.draw(bisturiSprite);
             window.draw(pinzasSprite);
             window.draw(tijerasSprite);
