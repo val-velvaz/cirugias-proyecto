@@ -6,6 +6,19 @@ Juego::Juego() {
     if (!juegoFont.loadFromFile("arial.ttf")) {
         window.close();
     }
+    if (!bisturiTexture.loadFromFile("assets/textures/bisturi.png") ||
+        !alicateTexture.loadFromFile("assets/textures/alicate.png") ||
+        !pinzasTexture.loadFromFile("assets/textures/pinzas.png") ||
+        !tijerasTexture.loadFromFile("assets/textures/tijeras.png")
+        ) {
+            window.close();
+        }
+    
+    bisturiSprite.setTexture(bisturiTexture);
+    alicateSprite.setTexture(alicateTexture);
+    pinzasSprite.setTexture(pinzasTexture);
+    tijerasSprite.setTexture(tijerasTexture);
+
     interfaz.config(juegoFont);
     estadoActual = JuegoState::EXPEDIENTE;
 }
@@ -35,7 +48,7 @@ void Juego::run() {
         if(estadoActual == JuegoState::EXPEDIENTE) {
         interfaz.draw(window);
         } else if (estadoActual == JuegoState::CIRUGIA) {
-            
+
         }
         window.display();
     }
