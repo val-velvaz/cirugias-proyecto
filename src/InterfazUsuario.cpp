@@ -181,7 +181,7 @@ void InterfazUsuario::resetBoton() {
 // En el archivo: cirugias/src/InterfazUsuario.cpp
 
 Cirugia InterfazUsuario::getDatosCirugia() const {
-    std::string diagnosticoCirugia = "Diagnóstico no especificado";
+    std::string diagnosticoCirugia = "Diagnostico no especificado";
     Instrumento instrumentoRequerido = Instrumento::NINGUNO;
     std::string tipoCirugiaSeleccionada = tipoTypes[tipoActual];
 
@@ -192,7 +192,7 @@ Cirugia InterfazUsuario::getDatosCirugia() const {
         diagnosticoCirugia = "Insuficiencia renal";
         instrumentoRequerido = Instrumento::PINZAS; 
     } else if (tipoCirugiaSeleccionada == "Cirugia laser") {
-        diagnosticoCirugia = "Error de refracción ocular";
+        diagnosticoCirugia = "Error de refraccion ocular";
         instrumentoRequerido = Instrumento::NINGUNO;
     }
 

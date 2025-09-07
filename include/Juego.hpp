@@ -1,18 +1,17 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <InterfazUsuario.hpp>
 #include <iostream>
 #include <string>
 
-#include "InterfazUsuario.hpp"
-#include "Cirugia.hpp"
-
 enum class JuegoState {
-    EXPEDIENTE, //ingreso
-    CIRUGIA,// partida
-    FINAL, // final
-    INFORME 
+    EXPEDIENTE,
+    CIRUGIA,
+    FINAL,
+    INFORME
 };
+
 
 class Juego {
 private:
@@ -21,9 +20,9 @@ private:
     InterfazUsuario interfaz;
 
     Cirugia cirugiaActual;
-    JuegoState estadoActual; //guardar el estado en el momento q tiene el juego
+    JuegoState estadoActual;
 
-    // cirujano
+    // Textos del informe final
     sf::Text tituloInforme;
     sf::Text textPaciente;
     sf::Text textCirujano;
@@ -33,25 +32,29 @@ private:
     sf::Text textDiagnostico;
     sf::Text textInstrumento;
 
+    // Zona de colision
     sf::RectangleShape areaEsteril;
 
+    // Texturas
     sf::Texture bisturiTexture;
     sf::Texture pinzasTexture;
     sf::Texture alicateTexture;
     sf::Texture tijerasTexture;
 
+    // Sprites
     sf::Sprite bisturiSprite;
     sf::Sprite pinzasSprite;
     sf::Sprite alicateSprite;
     sf::Sprite tijerasSprite;
 
+    // Flags para arrastrar y soltar
     bool isBisturiDragged;
     bool isPinzaDragged;
     bool isTijerasDragged;
     bool isAlicateDragged;
 
 public:
-    std::string  getInstrumentoName(Instrumento instrumento);
+    std::string getInstrumentoName(Instrumento instrumento);
     Juego();
     void run();
 };

@@ -1,8 +1,7 @@
-#include "Juego.hpp" //pendiente: cambiarlo por game
+#include "Juego.hpp"
 
 Juego::Juego() {
     window.create(sf::VideoMode(800, 600), "A Contrarreloj c:");
-    // agregar la fuente
     if (!juegoFont.loadFromFile("arial.ttf")) {
         window.close();
     }
@@ -10,9 +9,9 @@ Juego::Juego() {
         !alicateTexture.loadFromFile("assets/textures/alicate.png") ||
         !pinzasTexture.loadFromFile("assets/textures/pinzas.png") ||
         !tijerasTexture.loadFromFile("assets/textures/tijeras.png")
-        ) {
-            window.close();
-        } 
+    ) {
+        window.close();
+    } 
 
     tituloInforme.setFont(juegoFont);
     tituloInforme.setString("INFORME DE CIRUGIA");
@@ -32,10 +31,9 @@ Juego::Juego() {
     textDiagnostico.setPosition(50, 50);
 
     textInstrumento.setFont(juegoFont);
-    textDiagnostico.setCharacterSize(24);
-    textDiagnostico.setFillColor(sf::Color::Red);
-    textDiagnostico.setPosition(50, 80);
-    // ahorita agrego mas
+    textInstrumento.setCharacterSize(24);
+    textInstrumento.setFillColor(sf::Color::Red);
+    textInstrumento.setPosition(50, 80);
 
     areaEsteril.setSize(sf::Vector2f(200, 200));
     areaEsteril.setFillColor(sf::Color(0, 255, 0, 100));
@@ -55,24 +53,25 @@ Juego::Juego() {
 }
 
 void Juego::run() {
-    // game loop
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)){
             if (event.type == sf::Event::Closed) {
+                std::cout << "la ventana ha sido cerrada" << std::endl;
                 window.close();
             }
             if (estadoActual == JuegoState::EXPEDIENTE) {
+                //std::cout << "estado EXPEDIENTE" << std::endl;
                 interfaz.manejarEntrada(event);
 
                 if(interfaz.getPressBoton()) {
                     estadoActual = JuegoState::CIRUGIA;
+                    //std::cout << "estado CIRUGIA" << std::endl;
                     cirugiaActual = interfaz.getDatosCirugia();
                     interfaz.resetBoton();
 
                     textDiagnostico.setString("Diagnostico: " + cirugiaActual.getDiagnostico());
                     textInstrumento.setString("Instrumento: " + getInstrumentoName(cirugiaActual.getInstrumentoNeeded()));
-                    //prueba
                     std::cout << "DATOS DE LA CIRUGIA" << std::endl;
                     std::cout << "Paciente: " << cirugiaActual.getNombrePaciente() << std::endl;
                     std::cout << "Cirujano: " << cirugiaActual.getNombreCirujano() << std::endl;
@@ -81,14 +80,11 @@ void Juego::run() {
                     std::cout << "Instrumento necesario: " << getInstrumentoName(cirugiaActual.getInstrumentoNeeded()) << std::endl;
                 }
             } else if (estadoActual == JuegoState::CIRUGIA) {
-                //arrastrar y soltar creo
                 if (event.type == sf::Event::MouseButtonPressed) {
                     sf::Vector2f mousePos = window.mapPixelToCoords(sf::Vector2i(event.mouseButton.x, event.mouseButton.y));
-                    // creo q seria mejor hacer una funcion en vez de todos estos ifs
                     if (bisturiSprite.getGlobalBounds().contains(mousePos)) {
                         isBisturiDragged = true;
                         std::cout << "Bisturi tomado" << std::endl;
-
                     }
                     else if (tijerasSprite.getGlobalBounds().contains(mousePos)) {
                         isTijerasDragged = true;
@@ -120,12 +116,7 @@ void Juego::run() {
             }
             if (event.type == sf::Event::MouseButtonReleased) {
                 if(event.mouseButton.button == sf::Mouse::Left) {
-                    isBisturiDragged = false;
-                    isTijerasDragged = false;
-                    isAlicateDragged = false;
-                    isPinzaDragged = false;
-
-                    if(bisturiSprite.getGlobalBounds().intersects(areaEsteril.getGlobalBounds())) {
+                    if (bisturiSprite.getGlobalBounds().intersects(areaEsteril.getGlobalBounds())) {
                         std::cout << "Bisturi soltado" << std::endl;
                     }
                     if (tijerasSprite.getGlobalBounds().intersects(areaEsteril.getGlobalBounds())) {
@@ -137,6 +128,10 @@ void Juego::run() {
                     if(pinzasSprite.getGlobalBounds().intersects(areaEsteril.getGlobalBounds())) {
                         std::cout << "pinza soltadoa" << std::endl;
                     }
+                    isBisturiDragged = false;
+                    isTijerasDragged = false;
+                    isAlicateDragged = false;
+                    isPinzaDragged = false;
                 }
             }
         }
