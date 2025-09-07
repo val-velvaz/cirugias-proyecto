@@ -100,13 +100,16 @@ void InterfazUsuario::manejarEntrada(const sf::Event& event) {
         pacienteActivo = pacienteBox.getGlobalBounds().contains(mousePos); //pacientito
         cirujanoActivo = cirujanoBox.getGlobalBounds().contains(mousePos); //cirujanito
 
+        if (startBoton.getGlobalBounds().contains(mousePos)) {
+            pressBoton = true;
+        }
+
         if (pacienteActivo) pacienteBox.setOutlineColor(sf::Color::Blue);
         else pacienteBox.setOutlineColor(sf::Color::White);
 
         if (cirujanoActivo) cirujanoBox.setOutlineColor(sf::Color::Blue);
         else cirujanoBox.setOutlineColor(sf::Color::White);
     }
-    //entrada de text
     if (event.type == sf::Event::TextEntered) {
         if (event.text.unicode < 128) { //ascii
             if (pacienteActivo) {

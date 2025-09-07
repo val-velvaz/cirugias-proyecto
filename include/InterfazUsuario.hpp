@@ -4,9 +4,12 @@
 #include <string>
 #include <vector>
 
+#include "Cirugia.hpp"
+
 class InterfazUsuario {
 private:
     sf::Font font;
+
 
     // paciente
     sf::RectangleShape pacienteBox;
@@ -34,8 +37,14 @@ private:
     bool pacienteActivo;
     bool cirujanoActivo;
 
+    bool pressBoton; //presionar para iniciar
+
 public:
     InterfazUsuario();
+
+    Cirugia getDatosCirugia();
+
+
     void config(const sf::Font& juegoFont);
     void draw(sf::RenderWindow& ventana);
     void manejarEntrada(const sf::Event& event);
