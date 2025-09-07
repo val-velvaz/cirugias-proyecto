@@ -13,7 +13,21 @@ Juego::Juego() {
         ) {
             window.close();
         } 
+
+    tituloInforme.setFont(juegoFont);
+    tituloInforme.setString("INFORME DE CIRUGIA");
+    tituloInforme.setCharacterSize(40);
+    tituloInforme.setFillColor(sf::Color::White);
+    tituloInforme.setPosition(150, 50);
+
+    textPaciente.setFont(juegoFont);
+    textPaciente.setString("Paciente: ");
+    textPaciente.setCharacterSize(30);
+    textPaciente.setFillColor(sf::Color::White);
+    textPaciente.setPosition(150, 20);
     
+    // ahorita agrego mas
+
     areaEsteril.setSize(sf::Vector2f(200, 200));
     areaEsteril.setFillColor(sf::Color(0, 255, 0, 100));
     areaEsteril.setPosition(300, 200);
@@ -46,6 +60,14 @@ void Juego::run() {
                     estadoActual = JuegoState::CIRUGIA;
                     cirugiaActual = interfaz.getDatosCirugia();
                     interfaz.resetBoton();
+
+                    //prueba
+                    std::cout << "DATOS DE LA CIRUGIA" << std::endl;
+                    std::cout << "Paciente: " << cirugiaActual.getNombrePaciente() << std::endl;
+                    std::cout << "Cirujano: " << cirugiaActual.getNombreCirujano() << std::endl;
+                    std::cout << "Tipo de cirugia: " << cirugiaActual.getTipoCirugia() << std::endl;
+                    std::cout << "Diagnostico: " << cirugiaActual.getDiagnostico() << std::endl;
+                    std::cout << "Instrumento necesario: " << getInstrumentoName(cirugiaActual.getInstrumentoNeeded()) << std::endl;
                 }
             } else if (estadoActual == JuegoState::CIRUGIA) {
                 //arrastrar y soltar creo
@@ -114,4 +136,15 @@ void Juego::run() {
         }
         window.display();
     }
+}
+
+std::string Juego::getInstrumentoName(Instrumento instrumento) {
+    switch (instrumento) {
+        case Instrumento::BISTURI: return "Bisturi";
+        case Instrumento::ALICATE: return "Alicate";
+        case Instrumento::TIJERAS: return "Tijeras";
+        case Instrumento::PINZAS: return "Pinzas";
+        case Instrumento::NINGUNO: return "ninguno";
+    }
+    return "desconocido";
 }

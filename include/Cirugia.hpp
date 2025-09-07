@@ -21,7 +21,7 @@ private:
 
 public:
 //te voy a cambiar, te molesta?
-    Cirugia() : instrumentoNeeded(Instrumento::NINGUNO) {}
+    Cirugia() : nombrePaciente(""), nombreCirujano(""), tipoCirugia(""), diagnostico(""), instrumentoNeeded(Instrumento::NINGUNO) {}
     Cirugia(const std::string& paciente, const std::string& diag, Instrumento instrumento)
     : nombrePaciente(paciente), diagnostico(diag), instrumentoNeeded(instrumento) {}
 
