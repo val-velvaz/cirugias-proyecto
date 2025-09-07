@@ -17,6 +17,17 @@ private:
 
     Cirugia cirugiaActual;
     JuegoState estadoActual; //guardar el estado en el momento q tiene el juego
+
+    sf::Texture bisturiTexture;
+    sf::Texture pinzasTexture;
+    sf::Texture alicateTexture;
+    sf::Texture tijerasTexture;
+
+    sf::Sprite bisturiSprite;
+    sf::Sprite pinzasSprite;
+    sf::Sprite alicateSprite;
+    sf::Sprite tijerasSprite;
+    
 public:
     Juego();
     void run();
