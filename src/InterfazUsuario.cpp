@@ -143,3 +143,7 @@ Cirugia InterfazUsuario::getDatosCirugia() const {
     newCirugia.setTipoCirugia(this->tipoTypes[this->tipoActual]);
     return newCirugia;
 }
+
+void InterfazUsuario::resetBoton() {
+    this->pressBoton = false;
+}

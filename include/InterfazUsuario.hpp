@@ -44,10 +44,9 @@ public:
 
     bool getPressBoton() const; //mejor nombre
     Cirugia getDatosCirugia() const;
+    void resetBoton();
 
     void config(const sf::Font& juegoFont);
     void draw(sf::RenderWindow& ventana);
     void manejarEntrada(const sf::Event& event);
-
-
 };
