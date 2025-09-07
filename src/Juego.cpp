@@ -7,6 +7,7 @@ Juego::Juego() {
         window.close();
     }
     interfaz.config(juegoFont);
+    estadoActual = JuegoState::EXPEDIENTE;
 }
 
 void Juego::run() {
