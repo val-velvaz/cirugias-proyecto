@@ -1,8 +1,5 @@
 #include "Cirugia.hpp"
 
-Cirugia::Cirugia() {    
-}
-
 void Cirugia::setNombrePaciente(const std::string& nombre) {
     this->nombrePaciente = nombre;
 }

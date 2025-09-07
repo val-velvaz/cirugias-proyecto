@@ -136,14 +136,19 @@ bool InterfazUsuario::getPressBoton() const {
     return this->pressBoton;
 }
 
-Cirugia InterfazUsuario::getDatosCirugia() const {
-    Cirugia newCirugia;
-    newCirugia.setNombreCirujano(this->cirujanoText);
-    newCirugia.setNombrePaciente(this->pacienteText);
-    newCirugia.setTipoCirugia(this->tipoTypes[this->tipoActual]);
-    return newCirugia;
-}
-
 void InterfazUsuario::resetBoton() {
     this->pressBoton = false;
+}
+
+Cirugia InterfazUsuario::getDatosCirugia() const {
+    if (tipoActual >= 0 && tipoActual < tipoTypes.size()) {
+        std::string tipoCirugiaSeleccionada = tipoTypes[tipoActual];
+        // se pueden agregar mas cirugias jijijaja
+        if (tipoCirugiaSeleccionada == "Extraccion de Muela") {
+            return Cirugia(pacienteShowText.getString(), tipoCirugiaSeleccionada, Instrumento::ALICATE);
+        } else if (tipoCirugiaSeleccionada == "Apendicectomia") {
+            return Cirugia(pacienteShowText.getString(), tipoCirugiaSeleccionada, Instrumento::BISTURI);
+        }
+    }
+    return Cirugia(pacienteShowText.getString(), "Cirugía genérica", Instrumento::NINGUNO);
 }
