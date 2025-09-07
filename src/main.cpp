@@ -9,7 +9,7 @@ int main() {
     Cirugia miCirugia; 
     miCirugia.setNombrePaciente("Paciente X");
     miCirugia.setNombreCirujano("Dr. Smith");
-    miCirugia.setTipoCirugia("Apendicectomía"); 
+    miCirugia.setTipoCirugia("Apendicectomia"); 
 
     std::cout << "Paciente: " << miCirugia.getNombrePaciente() << std::endl;
     std::cout << "Cirujano: " << miCirugia.getNombreCirujano() << std::endl;
