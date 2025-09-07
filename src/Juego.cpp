@@ -26,6 +26,15 @@ Juego::Juego() {
     textPaciente.setFillColor(sf::Color::White);
     textPaciente.setPosition(150, 20);
     
+    textDiagnostico.setFont(juegoFont);
+    textDiagnostico.setCharacterSize(24);
+    textDiagnostico.setFillColor(sf::Color::White);
+    textDiagnostico.setPosition(50, 50);
+
+    textInstrumento.setFont(juegoFont);
+    textDiagnostico.setCharacterSize(24);
+    textDiagnostico.setFillColor(sf::Color::Red);
+    textDiagnostico.setPosition(50, 80);
     // ahorita agrego mas
 
     areaEsteril.setSize(sf::Vector2f(200, 200));
@@ -61,6 +70,8 @@ void Juego::run() {
                     cirugiaActual = interfaz.getDatosCirugia();
                     interfaz.resetBoton();
 
+                    textDiagnostico.setString("Diagnostico: " + cirugiaActual.getDiagnostico());
+                    textInstrumento.setString("Instrumento: " + getInstrumentoName(cirugiaActual.getInstrumentoNeeded()));
                     //prueba
                     std::cout << "DATOS DE LA CIRUGIA" << std::endl;
                     std::cout << "Paciente: " << cirugiaActual.getNombrePaciente() << std::endl;
@@ -91,15 +102,19 @@ void Juego::run() {
             if (event.type == sf::Event::MouseMoved) {
                 if (isBisturiDragged) {
                     bisturiSprite.setPosition(sf::Vector2f(event.mouseMove.x, event.mouseMove.y));
+                    std::cout << "Bisturi tomado" << std::endl;
                 }
                 else if (isTijerasDragged) {
                     tijerasSprite.setPosition(sf::Vector2f(event.mouseMove.x, event.mouseMove.y));
+                    std::cout << "Tijeras tomadas" << std::endl;
                 }
                 else if (isAlicateDragged) {
                     alicateSprite.setPosition(sf::Vector2f(event.mouseMove.x, event.mouseMove.y));
+                    std::cout << "Alicate tomado" << std::endl;
                 }
                 else if (isPinzaDragged) {
                     pinzasSprite.setPosition(sf::Vector2f(event.mouseMove.x, event.mouseMove.y));
+                    std::cout << "Pinza tomada" << std::endl;
                 }
             }
             if (event.type == sf::Event::MouseButtonReleased) {
@@ -128,6 +143,8 @@ void Juego::run() {
         if(estadoActual == JuegoState::EXPEDIENTE) {
         interfaz.draw(window);
         } else if (estadoActual == JuegoState::CIRUGIA) {
+            window.draw(textDiagnostico);
+            window.draw(textInstrumento);
             window.draw(areaEsteril);
             window.draw(bisturiSprite);
             window.draw(pinzasSprite);

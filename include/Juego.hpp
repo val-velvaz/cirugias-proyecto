@@ -30,6 +30,8 @@ private:
     sf::Text textTipoCirugia;
     sf::Text textResultado;
     sf::Text ResetBoton;
+    sf::Text textDiagnostico;
+    sf::Text textInstrumento;
 
     sf::RectangleShape areaEsteril;
 
