@@ -75,5 +75,19 @@ void InterfazUsuario::config(const sf::Font& juegoFont) {
     textStartBoton.setCharacterSize(24);
     textStartBoton.setFillColor(sf::Color::White);
     textStartBoton.setPosition(310, 460);
+}
 
+void InterfazUsuario::draw(sf::RenderWindow& window) {
+    window.draw(pacienteLabel);
+    window.draw(pacienteBox);
+    window.draw(pacienteText);
+
+    window.draw(cirujanoLabel);
+    window.draw(cirujanoBox);
+    window.draw(cirujanoShowText); // es la misma q pacienteText nada mas se me fue el show
+
+    window.draw(tipoLabel);
+    window.draw(tipoSelector);
+    window.draw(startBoton);
+    window.draw(textStartBoton);
 }
