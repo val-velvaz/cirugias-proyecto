@@ -5,6 +5,7 @@ InterfazUsuario::InterfazUsuario() {
     cirujanoActivo = false;
     tipoActual = 0;
     tipoTypes = {"Apendicectomia", "Transplante de riñon", "Cirugia laser"};
+    pressBoton = false;
 }
 
 void InterfazUsuario::config(const sf::Font& juegoFont) {
@@ -129,4 +130,16 @@ void InterfazUsuario::manejarEntrada(const sf::Event& event) {
             }
         }
     }
+}
+
+bool InterfazUsuario::presionoBoton() const {
+    return this->pressBoton;
+}
+
+Cirugia InterfazUsuario::getDatosCirugia() const {
+    Cirugia newCirugia;
+    newCirugia.setNombreCirujano(cirujanoText);
+    newCirugia.setNombrePaciente(pacienteText);
+    newCirugia.setTipoCirugia(tipoTypes[tipoActual]);
+    return newCirugia;
 }

@@ -43,9 +43,12 @@ public:
     InterfazUsuario();
 
     Cirugia getDatosCirugia();
-
+    bool presionoBoton() const;
+    Cirugia getDatosCirugia() const;
 
     void config(const sf::Font& juegoFont);
     void draw(sf::RenderWindow& ventana);
     void manejarEntrada(const sf::Event& event);
+
+
 };
