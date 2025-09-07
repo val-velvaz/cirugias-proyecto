@@ -6,3 +6,9 @@
 2. ¿Para qué se usa el puntero this? Es necesario cuando el nombre de un 
     parámetro de una función es el mismo que el de una variable de la 
     clase para evitar ambigüedad.
+
+------------------------------------------------------
+InterfazUsuario: dibujar campos de texto, un selector y un botón.
+    - División de responsabilidades.
+    - Juego delega la responsabilidad de dibujar los botones a InterfazUsuario
+    
