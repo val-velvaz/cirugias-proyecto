@@ -19,8 +19,7 @@ void Juego::run() {
             }
             interfaz.manejarEntrada(event);
         }
-        //window.clear();
-        window.clear(sf::Color(sf::Color::Black)); // prueba 
+        window.clear(sf::Color(sf::Color::Black)); 
         interfaz.draw(window);
         window.display();
     }

@@ -11,14 +11,14 @@ private:
     // paciente
     sf::RectangleShape pacienteBox;
     sf::Text pacienteLabel;
-    std::string pacienteText; // <-- Aquí se guarda la cadena de texto
-    sf::Text pacienteShowText; // <-- Aquí se renderiza la cadena de texto
+    std::string pacienteText; 
+    sf::Text pacienteShowText; 
 
     // cirujano
     sf::RectangleShape cirujanoBox;
     sf::Text cirujanoLabel;
-    std::string cirujanoText; // <-- Aquí se guarda la cadena de texto
-    sf::Text cirujanoShowText; // <-- Aquí se renderiza la cadena de texto
+    std::string cirujanoText; 
+    sf::Text cirujanoShowText; 
 
     //tipo de cirugia
     sf::Text tipoLabel;

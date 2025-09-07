@@ -4,7 +4,7 @@ InterfazUsuario::InterfazUsuario() {
     pacienteActivo = false;
     cirujanoActivo = false;
     tipoActual = 0;
-    tipoTypes = {"Apendicectomía", "Transplante de riñon", "Cirugía láser"};
+    tipoTypes = {"Apendicectomia", "Transplante de riñon", "Cirugia laser"};
 }
 
 void InterfazUsuario::config(const sf::Font& juegoFont) {
@@ -54,7 +54,7 @@ void InterfazUsuario::config(const sf::Font& juegoFont) {
 
     //tipo de cirugia
     tipoLabel.setFont(font);
-    tipoLabel.setString("Tipo de cirugía: ");
+    tipoLabel.setString("Tipo de cirugia: ");
     tipoLabel.setCharacterSize(24);
     tipoLabel.setFillColor(sf::Color::White);
     tipoLabel.setPosition(100, 300);
