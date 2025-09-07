@@ -18,10 +18,20 @@ void Juego::run() {
             if (event.type == sf::Event::Closed) {
                 window.close();
             }
-            interfaz.manejarEntrada(event);
+            if (estadoActual == JuegoState::EXPEDIENTE) {
+                interfaz.manejarEntrada(event);
+
+                if(interfaz.presionoBoton()) {
+                    estadoActual = JuegoState::CIRUGIA;
+                    cirugiaActual = interfaz.getDatosCirugia();
+                }
+            }
+
         }
         window.clear(sf::Color(sf::Color::Black)); 
+        if(estadoActual == JuegoState::EXPEDIENTE) {
         interfaz.draw(window);
+        }
         window.display();
     }
 }

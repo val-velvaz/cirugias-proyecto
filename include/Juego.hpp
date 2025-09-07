@@ -15,6 +15,7 @@ private:
     sf::Font juegoFont;
     InterfazUsuario interfaz;
 
+    Cirugia cirugiaActual;
     JuegoState estadoActual; //guardar el estado en el momento q tiene el juego
 public:
     Juego();
