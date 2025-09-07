@@ -11,21 +11,20 @@ private:
     // paciente
     sf::RectangleShape pacienteBox;
     sf::Text pacienteLabel;
-    sf::Text pacienteText;
-    sf::Text pacienteShowText;
+    std::string pacienteText; // <-- Aquí se guarda la cadena de texto
+    sf::Text pacienteShowText; // <-- Aquí se renderiza la cadena de texto
 
     // cirujano
     sf::RectangleShape cirujanoBox;
     sf::Text cirujanoLabel;
-    sf::Text cirujanoText;
-    sf::Text cirujanoShowText;
+    std::string cirujanoText; // <-- Aquí se guarda la cadena de texto
+    sf::Text cirujanoShowText; // <-- Aquí se renderiza la cadena de texto
 
     //tipo de cirugia
     sf::Text tipoLabel;
     sf::Text tipoSelector;
     std::vector<std::string> tipoTypes;
     int tipoActual;
-
 
     //boton de inicio
     sf::RectangleShape startBoton;
@@ -34,7 +33,7 @@ private:
     //ESTADO DE LOS CAMPOS
     bool pacienteActivo;
     bool cirujanoActivo;
-    
+
 public:
     InterfazUsuario();
     void config(const sf::Font& juegoFont);

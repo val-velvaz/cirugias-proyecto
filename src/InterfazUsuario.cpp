@@ -9,7 +9,7 @@ InterfazUsuario::InterfazUsuario() {
 
 void InterfazUsuario::config(const sf::Font& juegoFont) {
     font = juegoFont;
-    
+
     // PACIENTE
     //nombre
     pacienteLabel.setFont(font);
@@ -26,10 +26,10 @@ void InterfazUsuario::config(const sf::Font& juegoFont) {
     pacienteBox.setPosition(100, 140);
 
     // texto
-    pacienteText.setFont(font);
-    pacienteText.setCharacterSize(24);
-    pacienteText.setFillColor(sf::Color::White);
-    pacienteText.setPosition(110, 145);
+    pacienteShowText.setFont(font);
+    pacienteShowText.setCharacterSize(24);
+    pacienteShowText.setFillColor(sf::Color::White);
+    pacienteShowText.setPosition(110, 145);
 
     //CIRUJANO
     //nombre
@@ -47,10 +47,10 @@ void InterfazUsuario::config(const sf::Font& juegoFont) {
     cirujanoBox.setPosition(100, 240);
 
     //texto
-    cirujanoText.setFont(font);
-    cirujanoText.setCharacterSize(24);
-    cirujanoText.setFillColor(sf::Color::White);
-    cirujanoText.setPosition(110, 245);
+    cirujanoShowText.setFont(font);
+    cirujanoShowText.setCharacterSize(24);
+    cirujanoShowText.setFillColor(sf::Color::White);
+    cirujanoShowText.setPosition(110, 245);
 
     //tipo de cirugia
     tipoLabel.setFont(font);
@@ -80,11 +80,11 @@ void InterfazUsuario::config(const sf::Font& juegoFont) {
 void InterfazUsuario::draw(sf::RenderWindow& window) {
     window.draw(pacienteLabel);
     window.draw(pacienteBox);
-    window.draw(pacienteText);
+    window.draw(pacienteShowText);
 
     window.draw(cirujanoLabel);
     window.draw(cirujanoBox);
-    window.draw(cirujanoShowText); // es la misma q pacienteText nada mas se me fue el show
+    window.draw(cirujanoShowText);
 
     window.draw(tipoLabel);
     window.draw(tipoSelector);
@@ -99,6 +99,31 @@ void InterfazUsuario::manejarEntrada(const sf::Event& event) {
         sf::Vector2f mousePos = {static_cast<float>(event.mouseButton.x), static_cast<float>(event.mouseButton.y)};
         pacienteActivo = pacienteBox.getGlobalBounds().contains(mousePos); //pacientito
         cirujanoActivo = cirujanoBox.getGlobalBounds().contains(mousePos); //cirujanito
+
+        if (pacienteActivo) pacienteBox.setOutlineColor(sf::Color::Blue);
+        else pacienteBox.setOutlineColor(sf::Color::White);
+
+        if (cirujanoActivo) cirujanoBox.setOutlineColor(sf::Color::Blue);
+        else cirujanoBox.setOutlineColor(sf::Color::White);
     }
     //entrada de text
+    if (event.type == sf::Event::TextEntered) {
+        if (event.text.unicode < 128) { //ascii
+            if (pacienteActivo) {
+                if (event.text.unicode == '\b' && !pacienteText.empty()) {
+                    pacienteText.pop_back();
+                } else if (event.text.unicode != '\b' && pacienteText.length() < 25) {
+                    pacienteText += static_cast<char>(event.text.unicode);
+                }
+                pacienteShowText.setString(pacienteText);
+            } else if (cirujanoActivo) {
+                if (event.text.unicode == '\b' && !cirujanoText.empty()) {
+                    cirujanoText.pop_back();
+                } else if (event.text.unicode != '\b' && cirujanoText.length() < 25) {
+                    cirujanoText += static_cast<char>(event.text.unicode);
+                }
+                cirujanoShowText.setString(cirujanoText);
+            }
+        }
+    }
 }
