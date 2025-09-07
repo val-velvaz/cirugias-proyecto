@@ -1,0 +1,8 @@
+1. ¿Por qué los setters usan una referencia constante (const std::string)
+    y los getters terminan con const? La referencia constante evita copias
+    innecesarias, lo cual es una optimización de rendimiento. El const
+    al final de un método garantiza que ese método no modificará los datos 
+    de la clase.
+2. ¿Para qué se usa el puntero this? Es necesario cuando el nombre de un 
+    parámetro de una función es el mismo que el de una variable de la 
+    clase para evitar ambigüedad.
