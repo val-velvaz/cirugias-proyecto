@@ -6,12 +6,12 @@
 
 class InterfazUsuario {
 private:
-    sf::Font fuente;
+    sf::Font font;
 
     // paciente
     sf::RectangleShape pacienteBox;
     sf::Text pacienteLabel;
-    std::string pacienteText;
+    sf::Text pacienteText;
     sf::Text pacienteShowText;
 
     // cirujano
@@ -32,7 +32,7 @@ private:
     
 public:
     InterfazUsuario();
-    void config(const sf::Font& fuenteJuego);
+    void config(const sf::Font& juegoFont);
     void draw(sf::RenderWindow& ventana);
     void manejarEntrada(const sf::Event& event);
 };
