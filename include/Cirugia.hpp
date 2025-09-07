@@ -14,9 +14,9 @@ public:
 
     void setNombrePaciente(const std::string& nombre);
     void setNombreCirujano(const std::string& nombre);
-    void setTipoCirujia(const std::string& nombre);
+    void setTipoCirugia(const std::string& nombre);
 
     std::string getNombrePaciente() const;
     std::string getNombreCirujano() const;
-    std::string getTipoCirujia() const;
+    std::string getTipoCirugia() const;
 };

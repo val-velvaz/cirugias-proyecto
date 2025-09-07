@@ -1,21 +1,19 @@
-// src/main.cpp
 #include <SFML/Graphics.hpp>
 #include <iostream> 
-
-#include "Cirugia.cpp"
+#include "Cirugia.hpp"
 #include "InterfazUsuario.hpp"
 #include "Juego.hpp"
 
 int main() {
-    // probar Cirugia
-    Cirugia m_Cirugia;
-    m_Cirugia.setNombrePaciente("Paciente X");
-    m_Cirugia.setNombreCirujano("Dr. Smith");
-    m_Cirugia.setNombreCirujano("Apendicectomía");
+    //probar para Cirugia
+    Cirugia miCirugia; 
+    miCirugia.setNombrePaciente("Paciente X");
+    miCirugia.setNombreCirujano("Dr. Smith");
+    miCirugia.setTipoCirugia("Apendicectomía"); 
 
-    std::cout << "Paciente: " << m_Cirugia.getNombrePaciente() << std::endl;
-    std::cout << "Cirujano: " << m_Cirugia.getNombreCirujano() << std::endl;
-    std::cout << "Tipo de cirugia: " << m_Cirugia.getTipoCirujia() << std::endl;
+    std::cout << "Paciente: " << miCirugia.getNombrePaciente() << std::endl;
+    std::cout << "Cirujano: " << miCirugia.getNombreCirujano() << std::endl;
+    std::cout << "Tipo de cirugia: " << miCirugia.getTipoCirugia() << std::endl; 
     
     return 0;
-};
+}

@@ -11,7 +11,7 @@ void Cirugia::setNombreCirujano(const std::string& nombre) {
     this->nombreCirujano = nombre;
 }
 
-void Cirugia::setTipoCirujia(const std::string& tipo) {
+void Cirugia::setTipoCirugia(const std::string& tipo) {
     this->tipoCirugia = tipo;
 }
 
@@ -23,6 +23,6 @@ std::string Cirugia::getNombreCirujano() const {
     return nombreCirujano;
 }
 
-std::string Cirugia::getTipoCirujia() const {
+std::string Cirugia::getTipoCirugia() const {
     return tipoCirugia;
 }
