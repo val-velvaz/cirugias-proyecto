@@ -17,16 +17,21 @@ private:
     // cirujano
     sf::RectangleShape cirujanoBox;
     sf::Text cirujanoLabel;
-    std::string cirujanoText;
+    sf::Text cirujanoText;
     sf::Text cirujanoShowText;
 
     //tipo de cirugia
-    sf::RectangleShape tipoBox;
     sf::Text tipoLabel;
+    sf::Text tipoSelector;
     std::vector<std::string> tipoTypes;
     int tipoActual;
 
+
     //boton de inicio
+    sf::RectangleShape startBoton;
+    sf::Text textStartBoton;
+
+    //ESTADO DE LOS CAMPOS
     bool pacienteActivo;
     bool cirujanoActivo;
     

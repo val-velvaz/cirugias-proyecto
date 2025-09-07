@@ -27,5 +27,53 @@ void InterfazUsuario::config(const sf::Font& juegoFont) {
 
     // texto
     pacienteText.setFont(font);
+    pacienteText.setCharacterSize(24);
+    pacienteText.setFillColor(sf::Color::White);
+    pacienteText.setPosition(110, 145);
+
+    //CIRUJANO
+    //nombre
+    cirujanoLabel.setFont(font);
+    cirujanoLabel.setString("Nombre del Cirujano: ");
+    cirujanoLabel.setCharacterSize(24);
+    cirujanoLabel.setFillColor(sf::Color::White);
+    cirujanoLabel.setPosition(100, 200);
+
+    //caja de texto
+    cirujanoBox.setSize(sf::Vector2f(400, 40));
+    cirujanoBox.setFillColor(sf::Color(50, 50, 50));
+    cirujanoBox.setOutlineColor(sf::Color::White);
+    cirujanoBox.setOutlineThickness(2);
+    cirujanoBox.setPosition(100, 240);
+
+    //texto
+    cirujanoText.setFont(font);
+    cirujanoText.setCharacterSize(24);
+    cirujanoText.setFillColor(sf::Color::White);
+    cirujanoText.setPosition(110, 245);
+
+    //tipo de cirugia
+    tipoLabel.setFont(font);
+    tipoLabel.setString("Tipo de cirugía: ");
+    tipoLabel.setCharacterSize(24);
+    tipoLabel.setFillColor(sf::Color::White);
+    tipoLabel.setPosition(100, 300);
+
+    tipoSelector.setFont(font);
+    tipoSelector.setString(tipoTypes[tipoActual]);
+    tipoSelector.setCharacterSize(24);
+    tipoSelector.setFillColor(sf::Color::White);
+    tipoSelector.setPosition(100, 340);
+
+    //BOTONCITOS
+    startBoton.setSize(sf::Vector2f(200, 50));
+    startBoton.setFillColor(sf::Color::Green);
+    startBoton.setPosition(300, 450);
+
+    textStartBoton.setFont(font);
+    textStartBoton.setString("Iniciar cirugia:");
+    textStartBoton.setCharacterSize(24);
+    textStartBoton.setFillColor(sf::Color::White);
+    textStartBoton.setPosition(310, 460);
 
 }
