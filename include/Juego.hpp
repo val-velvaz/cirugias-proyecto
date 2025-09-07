@@ -27,6 +27,11 @@ private:
     sf::Sprite pinzasSprite;
     sf::Sprite alicateSprite;
     sf::Sprite tijerasSprite;
+
+    bool isBisturiDragged;
+    bool isPinzaDragged;
+    bool isTijerasDragged;
+    bool isAlicateDragged;
     
 public:
     Juego();

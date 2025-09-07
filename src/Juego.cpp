@@ -44,9 +44,46 @@ void Juego::run() {
                     interfaz.resetBoton();
                 }
             } else if (estadoActual == JuegoState::CIRUGIA) {
-
+                //arrastrar y soltar creo
+                if (event.type == sf::Event::MouseButtonPressed) {
+                    sf::Vector2f mousePos = window.mapPixelToCoords(sf::Vector2i(event.mouseButton.x, event.mouseButton.y));
+                    // creo q seria mejor hacer una funcion en vez de todos estos ifs
+                    if (bisturiSprite.getGlobalBounds().contains(mousePos)) {
+                        isBisturiDragged = true;
+                    }
+                    if (tijerasSprite.getGlobalBounds().contains(mousePos)) {
+                        isTijerasDragged = true;
+                    }
+                    if (alicateSprite.getGlobalBounds().contains(mousePos)) {
+                        isAlicateDragged = true;
+                    }
+                    if (pinzasSprite.getGlobalBounds().contains(mousePos)) {
+                        isPinzaDragged = true;
+                    }
+                }
             }
-
+            if (event.type == sf::Event::MouseMoved) {
+                if (isBisturiDragged) {
+                    bisturiSprite.setPosition(sf::Vector2f(event.mouseMove.x, event.mouseMove.y));
+                }
+                if (isTijerasDragged) {
+                    tijerasSprite.setPosition(sf::Vector2f(event.mouseMove.x, event.mouseMove.y));
+                }
+                if (isAlicateDragged) {
+                    alicateSprite.setPosition(sf::Vector2f(event.mouseMove.x, event.mouseMove.y));
+                }
+                if (isPinzaDragged) {
+                    pinzasSprite.setPosition(sf::Vector2f(event.mouseMove.x, event.mouseMove.y));
+                }
+            }
+            if (event.type == sf::Event::MouseButtonReleased) {
+                if(event.mouseButton.button == sf::Mouse::Left) {
+                    isBisturiDragged = false;
+                    isTijerasDragged = false;
+                    isAlicateDragged = false;
+                    isPinzaDragged = false;
+                }
+            }
         }
         window.clear(sf::Color::Black); 
         if(estadoActual == JuegoState::EXPEDIENTE) {
