@@ -1,0 +1,28 @@
+{
+    "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+
+    // --- Archivos de Compilación de C++ ---
+    // Oculta los archivos objeto (.o para GCC/Clang, .obj para MSVC)
+    "**/*.o": true,
+    "**/*.obj": true,
+
+    // Oculta los ejecutables (.exe en Windows, sin extensión en Linux/macOS)
+    "**/*.exe": true,
+
+    // Oculta el archivo de dependencias que a veces se genera
+    "**/*.d": true,
+    
+    // --- Carpetas Comunes de Compilación ---
+    // Si usas carpetas como 'build', 'bin' o 'obj' para los archivos compilados,
+    // puedes ocultarlas por completo. ¡Esto es súper recomendado!
+    "**/build/": true,
+    "**/bin/": true,
+    "**/obj/": true
+    }
+}
