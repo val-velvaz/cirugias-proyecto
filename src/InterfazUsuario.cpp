@@ -132,14 +132,14 @@ void InterfazUsuario::manejarEntrada(const sf::Event& event) {
     }
 }
 
-bool InterfazUsuario::presionoBoton() const {
+bool InterfazUsuario::getPressBoton() const {
     return this->pressBoton;
 }
 
 Cirugia InterfazUsuario::getDatosCirugia() const {
     Cirugia newCirugia;
-    newCirugia.setNombreCirujano(cirujanoText);
-    newCirugia.setNombrePaciente(pacienteText);
-    newCirugia.setTipoCirugia(tipoTypes[tipoActual]);
+    newCirugia.setNombreCirujano(this->cirujanoText);
+    newCirugia.setNombrePaciente(this->pacienteText);
+    newCirugia.setTipoCirugia(this->tipoTypes[this->tipoActual]);
     return newCirugia;
 }

@@ -21,14 +21,14 @@ void Juego::run() {
             if (estadoActual == JuegoState::EXPEDIENTE) {
                 interfaz.manejarEntrada(event);
 
-                if(interfaz.presionoBoton()) {
+                if(interfaz.getPressBoton()) {
                     estadoActual = JuegoState::CIRUGIA;
                     cirugiaActual = interfaz.getDatosCirugia();
                 }
             }
 
         }
-        window.clear(sf::Color(sf::Color::Black)); 
+        window.clear(sf::Color::Black); 
         if(estadoActual == JuegoState::EXPEDIENTE) {
         interfaz.draw(window);
         }

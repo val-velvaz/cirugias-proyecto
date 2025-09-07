@@ -42,8 +42,7 @@ private:
 public:
     InterfazUsuario();
 
-    Cirugia getDatosCirugia();
-    bool presionoBoton() const;
+    bool getPressBoton() const; //mejor nombre
     Cirugia getDatosCirugia() const;
 
     void config(const sf::Font& juegoFont);
