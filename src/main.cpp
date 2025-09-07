@@ -5,15 +5,9 @@
 #include "Juego.hpp"
 
 int main() {
-    //probar para Cirugia
-    Cirugia miCirugia; 
-    miCirugia.setNombrePaciente("Paciente X");
-    miCirugia.setNombreCirujano("Dr. Smith");
-    miCirugia.setTipoCirugia("Apendicectomia"); 
-
-    std::cout << "Paciente: " << miCirugia.getNombrePaciente() << std::endl;
-    std::cout << "Cirujano: " << miCirugia.getNombreCirujano() << std::endl;
-    std::cout << "Tipo de cirugia: " << miCirugia.getTipoCirugia() << std::endl; 
+    // probar para Juego
+    Juego m_Juego;
+    m_Juego.run();
     
     return 0;
 }

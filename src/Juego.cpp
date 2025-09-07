@@ -13,7 +13,8 @@ void Juego::run() {
                 window.close();
             }
         }
-        window.clear();
+        //window.clear();
+        window.clear(sf::Color(173, 216, 230)); // prueba 
         window.display();
     }
 }
