@@ -48,8 +48,19 @@ Juego::Juego() {
     tijerasSprite.setTexture(tijerasTexture);
     tijerasSprite.setPosition(550, 400);
 
+    textResultado.setFont(juegoFont);
+    textResultado.setCharacterSize(30);
+    textResultado.setFillColor(sf::Color::Yellow);
+    textResultado.setPosition(50, 400);
+
     interfaz.config(juegoFont);
     estadoActual = JuegoState::EXPEDIENTE;
+
+    // AÑADIDO: Inicializar las banderas de arrastre
+    isBisturiDragged = false;
+    isPinzaDragged = false;
+    isTijerasDragged = false;
+    isAlicateDragged = false;
 }
 
 void Juego::run() {
@@ -61,15 +72,11 @@ void Juego::run() {
                 window.close();
             }
             if (estadoActual == JuegoState::EXPEDIENTE) {
-                //std::cout << "estado EXPEDIENTE" << std::endl;
                 interfaz.manejarEntrada(event);
-
                 if(interfaz.getPressBoton()) {
                     estadoActual = JuegoState::CIRUGIA;
-                    //std::cout << "estado CIRUGIA" << std::endl;
                     cirugiaActual = interfaz.getDatosCirugia();
                     interfaz.resetBoton();
-
                     textDiagnostico.setString("Diagnostico: " + cirugiaActual.getDiagnostico());
                     textInstrumento.setString("Instrumento: " + getInstrumentoName(cirugiaActual.getInstrumentoNeeded()));
                     std::cout << "DATOS DE LA CIRUGIA" << std::endl;
@@ -99,39 +106,60 @@ void Juego::run() {
                         std::cout << "Pinza tomada" << std::endl;
                     }
                 }
-            }
-            if (event.type == sf::Event::MouseMoved) {
-                if (isBisturiDragged) {
-                    bisturiSprite.setPosition(sf::Vector2f(event.mouseMove.x, event.mouseMove.y));
-                }
-                else if (isTijerasDragged) {
-                    tijerasSprite.setPosition(sf::Vector2f(event.mouseMove.x, event.mouseMove.y));
-                }
-                else if (isAlicateDragged) {
-                    alicateSprite.setPosition(sf::Vector2f(event.mouseMove.x, event.mouseMove.y));
-                }
-                else if (isPinzaDragged) {
-                    pinzasSprite.setPosition(sf::Vector2f(event.mouseMove.x, event.mouseMove.y));
-                }
-            }
-            if (event.type == sf::Event::MouseButtonReleased) {
-                if(event.mouseButton.button == sf::Mouse::Left) {
-                    if (bisturiSprite.getGlobalBounds().intersects(areaEsteril.getGlobalBounds())) {
-                        std::cout << "Bisturi soltado" << std::endl;
+                if (event.type == sf::Event::MouseMoved) {
+                    if (isBisturiDragged) {
+                        bisturiSprite.setPosition(sf::Vector2f(event.mouseMove.x, event.mouseMove.y));
                     }
-                    if (tijerasSprite.getGlobalBounds().intersects(areaEsteril.getGlobalBounds())) {
-                        std::cout << "tijeras soltadas" << std::endl;
+                    else if (isTijerasDragged) {
+                        tijerasSprite.setPosition(sf::Vector2f(event.mouseMove.x, event.mouseMove.y));
                     }
-                    if(alicateSprite.getGlobalBounds().intersects(areaEsteril.getGlobalBounds())) {
-                        std::cout << "alicate soltado" << std::endl;
+                    else if (isAlicateDragged) {
+                        alicateSprite.setPosition(sf::Vector2f(event.mouseMove.x, event.mouseMove.y));
                     }
-                    if(pinzasSprite.getGlobalBounds().intersects(areaEsteril.getGlobalBounds())) {
-                        std::cout << "pinza soltadoa" << std::endl;
+                    else if (isPinzaDragged) {
+                        pinzasSprite.setPosition(sf::Vector2f(event.mouseMove.x, event.mouseMove.y));
                     }
-                    isBisturiDragged = false;
-                    isTijerasDragged = false;
-                    isAlicateDragged = false;
-                    isPinzaDragged = false;
+                }
+                if (event.type == sf::Event::MouseButtonReleased) {
+                    if(event.mouseButton.button == sf::Mouse::Left) {
+                        if (isBisturiDragged) {
+                            if (bisturiSprite.getGlobalBounds().intersects(areaEsteril.getGlobalBounds())) {
+                                std::cout << "Bisturi soltado" << std::endl;
+                                estadoActual = JuegoState::INFORME;
+                            } else {
+                                textResultado.setString("Instrumento incorrecto. Se necesita un " + getInstrumentoName(cirugiaActual.getInstrumentoNeeded()));
+                                estadoActual = JuegoState::INFORME;
+                            }
+                        } else if (isTijerasDragged) {
+                            if (tijerasSprite.getGlobalBounds().intersects(areaEsteril.getGlobalBounds())) {
+                                std::cout << "tijeras soltadas" << std::endl;
+                                estadoActual = JuegoState::INFORME;
+                            } else {
+                                textResultado.setString("Instrumento incorrecto. Se necesita un " + getInstrumentoName(cirugiaActual.getInstrumentoNeeded()));
+                                estadoActual = JuegoState::INFORME;
+                            }
+                        } else if (isAlicateDragged) {
+                            if (alicateSprite.getGlobalBounds().intersects(areaEsteril.getGlobalBounds())) {
+                                std::cout << "alicate soltado" << std::endl;
+                                estadoActual = JuegoState::INFORME;
+                            } else { 
+                                textResultado.setString("Instrumento incorrecto. Se necesita un " + getInstrumentoName(cirugiaActual.getInstrumentoNeeded()));
+                                estadoActual = JuegoState::INFORME;
+                            }
+                        } else if (isPinzaDragged) {
+                            if (pinzasSprite.getGlobalBounds().intersects(areaEsteril.getGlobalBounds())) {
+                                std::cout << "pinza soltadoa" << std::endl;
+                                estadoActual = JuegoState::INFORME;
+                            } else {
+                                textResultado.setString("Instrumento incorrecto. Se necesita un " + getInstrumentoName(cirugiaActual.getInstrumentoNeeded()));
+                                estadoActual = JuegoState::INFORME;
+                            }
+                        }
+                        isBisturiDragged = false;
+                        isTijerasDragged = false;
+                        isAlicateDragged = false;
+                        isPinzaDragged = false;
+                    }
                 }
             }
         }
@@ -146,6 +174,10 @@ void Juego::run() {
             window.draw(pinzasSprite);
             window.draw(tijerasSprite);
             window.draw(alicateSprite);
+        } else if (estadoActual == JuegoState::INFORME) {
+            window.draw(textResultado);
+            std::cout << "estado INFORME" << std::endl;
+            // Agrega aquí los otros textos del informe que quieras mostrar
         }
         window.display();
     }
